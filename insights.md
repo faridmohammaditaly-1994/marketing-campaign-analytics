@@ -3,3 +3,9 @@
 - **Coverage:** 6 distinct channels, 10 destinations
 - **Data quality:** No nulls, no invalid values, no clicks exceeding impressions
 - **Analytical note:** Perfect cleanliness confirms synthetic data — real campaign data always contains anomalies
+
+## Task 2: Channel Performance Overview
+- **Email leads ROAS** (9.35) — highest revenue efficiency despite lowest CVR (0.18%)
+- **Display Ads lowest ROAS** (2.54) — awareness channel, not conversion-focused
+- **Key insight:** ROAS and CVR measure different things — high ROAS with low CVR means high booking value per conversion, not high click efficiency
+- **CPA range:** $139 (Email) to $513 (Display Ads) — Email is 3.7x more cost-efficient per booking
