@@ -9,3 +9,8 @@
 - **Display Ads lowest ROAS** (2.54) — awareness channel, not conversion-focused
 - **Key insight:** ROAS and CVR measure different things — high ROAS with low CVR means high booking value per conversion, not high click efficiency
 - **CPA range:** $139 (Email) to $513 (Display Ads) — Email is 3.7x more cost-efficient per booking
+
+## Task 3: ROAS by Device and Channel
+- **Desktop ranks 1st in every channel** — consistent with higher purchase intent on desktop
+- **ROAS differences across devices are minimal** — suggests synthetic data; real data would show Mobile underperforming on CVR
+- **Real-world expectation:** Mobile drives clicks but Desktop closes bookings — budget should favor Desktop for conversion campaigns and Mobile for awareness

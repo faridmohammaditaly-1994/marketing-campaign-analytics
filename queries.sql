@@ -46,11 +46,34 @@ SELECT
     ROUND(SUM(clicks)::NUMERIC      / NULLIF(SUM(impressions), 0), 4)      AS ctr,
     ROUND(SUM(conversions)::NUMERIC / NULLIF(SUM(clicks), 0), 4)           AS cvr,
     ROUND(SUM(spend)::NUMERIC       / NULLIF(SUM(conversions), 0), 2)      AS cpa,
-    ROUND(SUM(revenue)::NUMERIC     / NULLIF(SUM(spend), 0), 2)            AS roas,
+    ROUND(SUM(revenue)::NUMERIC     / NULLIF(SUM(spend)::NUMERIC, 0), 2)            AS roas,
     RANK() OVER (ORDER BY SUM(revenue)::NUMERIC / NULLIF(SUM(spend), 0) DESC) AS rank_by_roas
 FROM marketing_analytics.campaigns
 GROUP BY channel
 ORDER BY rank_by_roas;
+
+
+-- ============================================================
+-- TASK 3: ROAS BY DEVICE AND CHANNEL
+-- ============================================================
+-- Business question: Does device type affect campaign performance?
+-- The media team wants to know where to shift budget across
+-- device and channel combinations.
+
+SELECT
+    channel,
+    device,
+    SUM(spend)                                                                  AS total_spend,
+    SUM(revenue)                                                                AS total_revenue,
+    ROUND(SUM(revenue)::NUMERIC / NULLIF(SUM(spend)::NUMERIC, 0), 2)           AS roas,
+    RANK() OVER (
+        PARTITION BY channel
+        ORDER BY SUM(revenue)::NUMERIC / NULLIF(SUM(spend), 0) DESC
+    )                                                                           AS rank_by_roas_within_channel
+FROM marketing_analytics.campaigns
+GROUP BY channel, device
+ORDER BY channel, rank_by_roas_within_channel;
+
 
 
 
