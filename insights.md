@@ -20,3 +20,9 @@
 - **January 2023 spend spike (+53.47% MoM)** — caused by December budget pullback, not January surge
 - **Revenue growth does not match spend growth** — January revenue grew only +1.24% despite +53% spend jump, indicating poor efficiency at budget reset
 - **December anomaly:** Normal campaign volume but lower avg spend per campaign — advertisers reduce daily budgets in December despite peak season
+
+## Task 5: Campaign Efficiency Ranking
+- **Email Abandoned Cart leads all campaigns** (ROAS 9.41, CPA $139) — highest return, lowest cost per booking
+- **Display Ads Native Ad and Retargeting tie at rank 1** (ROAS 2.56) — lowest performing channel, both campaigns equally weak
+- **Paid Search Summer Deals** best in channel (ROAS 5.51) — strong seasonal campaign to scale
+- **Key SQL pattern:** Window function results cannot be filtered in the same query — second CTE required to reference rank in WHERE clause

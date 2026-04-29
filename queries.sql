@@ -114,6 +114,83 @@ ORDER BY month;
 
 
 
+-- ============================================================
+-- TASK 5: CAMPAIGN EFFICIENCY RANKING
+-- ============================================================
+-- Business question: Which campaigns are most cost-efficient?
+-- Performance team wants to know what to scale and what to cut.
+
+WITH campaign_analysis AS (
+    SELECT
+        channel,
+        campaign_name,
+        SUM(spend)                                                          AS total_spend,
+        SUM(revenue)                                                        AS total_revenue,
+        SUM(conversions)                                                    AS total_conversions,
+        ROUND(SUM(revenue)::NUMERIC / NULLIF(SUM(spend)::NUMERIC, 0), 2)   AS roas,
+        ROUND(SUM(spend)::NUMERIC   / NULLIF(SUM(conversions), 0), 2)      AS cpa
+    FROM marketing_analytics.campaigns
+    GROUP BY channel, campaign_name
+),
+ranking AS (
+    SELECT
+        channel,
+        campaign_name,
+        total_spend,
+        total_revenue,
+        total_conversions,
+        roas,
+        cpa,
+        RANK() OVER (PARTITION BY channel ORDER BY roas DESC)              AS rank_by_roas
+    FROM campaign_analysis
+)
+SELECT
+    channel,
+    campaign_name,
+    total_spend,
+    total_revenue,
+    total_conversions,
+    roas,
+    cpa,
+    rank_by_roas
+FROM ranking
+WHERE rank_by_roas <= 2
+ORDER BY channel, rank_by_roas;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
