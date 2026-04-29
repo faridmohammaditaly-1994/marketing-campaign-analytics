@@ -26,3 +26,11 @@
 - **Display Ads Native Ad and Retargeting tie at rank 1** (ROAS 2.56) — lowest performing channel, both campaigns equally weak
 - **Paid Search Summer Deals** best in channel (ROAS 5.51) — strong seasonal campaign to scale
 - **Key SQL pattern:** Window function results cannot be filtered in the same query — second CTE required to reference rank in WHERE clause
+
+## Task 6: Multi-level Aggregation with GROUPING SETS
+- **Grand total ROAS: 4.89** across $90.5M spend and $442M revenue
+- **Email dominates** — $86.7M revenue at 9.35 ROAS, highest of all channels
+- **Display Ads weakest** — $35.8M revenue at 2.54 ROAS despite similar spend to other channels
+- **No regional variation** — ROAS is consistent across all regions within each channel
+- **Key pattern:** GROUPING SETS replaces multiple UNION ALL queries — one query, three aggregation levels
+- **Ordering lesson:** COALESCE aliases require CASE WHEN in ORDER BY to push subtotals to bottom
