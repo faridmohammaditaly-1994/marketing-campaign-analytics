@@ -75,16 +75,42 @@ GROUP BY channel, device
 ORDER BY channel, rank_by_roas_within_channel;
 
 
+-- ============================================================
+-- TASK 4: MONTHLY SPEND AND REVENUE TREND
+-- ============================================================
+-- Business question: How do spend and revenue trend over time?
+-- Finance wants monthly totals and MoM growth rates.
 
-
-
-
-
-
-
-
-
-
+WITH previous_performance AS (
+    SELECT
+        DATE_TRUNC('month', campaign_date::date)                            AS month,
+        SUM(spend)                                                          AS total_spend,
+        SUM(revenue)                                                        AS total_revenue,
+        ROUND(SUM(revenue)::NUMERIC / NULLIF(SUM(spend)::NUMERIC, 0), 2)   AS roas,
+        LAG(SUM(spend)) OVER (
+            ORDER BY DATE_TRUNC('month', campaign_date::date)
+        )                                                                   AS previous_spend,
+        LAG(SUM(revenue)) OVER (
+            ORDER BY DATE_TRUNC('month', campaign_date::date)
+        )                                                                   AS previous_revenue
+    FROM marketing_analytics.campaigns
+    GROUP BY DATE_TRUNC('month', campaign_date::date)
+)
+SELECT
+    TO_CHAR(month, 'YYYY Mon')                                              AS month_label,
+    total_spend,
+    total_revenue,
+    roas,
+    ROUND(
+        (total_spend - previous_spend)::NUMERIC * 100.0
+        / NULLIF(previous_spend, 0)::NUMERIC,
+    2)                                                                      AS mom_spend_pct,
+    ROUND(
+        (total_revenue - previous_revenue)::NUMERIC * 100.0
+        / NULLIF(previous_revenue, 0)::NUMERIC,
+    2)                                                                      AS mom_revenue_pct
+FROM previous_performance
+ORDER BY month;
 
 
 

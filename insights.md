@@ -14,3 +14,9 @@
 - **Desktop ranks 1st in every channel** — consistent with higher purchase intent on desktop
 - **ROAS differences across devices are minimal** — suggests synthetic data; real data would show Mobile underperforming on CVR
 - **Real-world expectation:** Mobile drives clicks but Desktop closes bookings — budget should favor Desktop for conversion campaigns and Mobile for awareness
+
+## Task 4: Monthly Spend and Revenue Trend
+- **ROAS peaks in summer** (Jul/Aug ~5.88) and dips in Jan/Feb (~3.82) — seasonal efficiency pattern
+- **January 2023 spend spike (+53.47% MoM)** — caused by December budget pullback, not January surge
+- **Revenue growth does not match spend growth** — January revenue grew only +1.24% despite +53% spend jump, indicating poor efficiency at budget reset
+- **December anomaly:** Normal campaign volume but lower avg spend per campaign — advertisers reduce daily budgets in December despite peak season
